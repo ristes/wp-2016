@@ -50,7 +50,7 @@ var JS_LIB = [
 */
 var DESTINATION = 'dest/';
 
-var FONTS_DESTINATION = '/fonts/';
+var FONTS_DESTINATION = 'fonts/';
 /**
 * The single page initial html file. It will be altered
 * by this script.
