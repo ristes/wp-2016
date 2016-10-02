@@ -2,3 +2,12 @@
 .main-page {
   margin-top: 50px;
 }
+
+.top-buffer {
+  margin-top: 20px;
+}
+
+.ng-scope {
+  border: 1px solid black;
+  margin: 3px;
+}

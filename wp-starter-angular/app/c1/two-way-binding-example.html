@@ -1,0 +1,32 @@
+<div class="row top-buffer"
+     ng-controller="FirstController as vm"
+     ng-init="to='Riste'">
+  <div class="col-sm-4 col-sm-offset-1">
+    <input class="form-control"
+           type="text"
+           ng-model="to"/>
+  </div>
+  <div class="col-sm-4" ng-click="helloDivClicked()">
+    Hello {{to}}!
+  </div>
+  <div class="col-sm-2">
+    <button class="btn btn-primary btn-xs"
+            ng-click="vm.clearTo()">
+      <i class="fa fa-fw fa-refresh"></i>
+    </button>
+  </div>
+
+  <div class="col-sm-12" ng-click="vm.helloDivClicked()">
+    <hr/>
+    {{name}} ||| {{ vm }}
+  </div>
+
+</div>
+
+<div class="row" ng-controller="SecondController as vm">
+  Hello {{vm.to}}!
+  <hr/>
+  {{vm.name}}
+  <hr/>
+  {{vm}}
+</div>
