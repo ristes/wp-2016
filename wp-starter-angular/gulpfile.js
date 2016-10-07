@@ -18,11 +18,17 @@ var fs = require("fs");
 
 var JS_APP = [
   'app/app.js',
+  'app/c1/c1.state.js',
   'app/c1/first.controller.js',
-  'app/c1/second.controller.js'
+  'app/c1/second.controller.js',
+  'app/group/group.state.js',
+  'app/group/group.controller.js',
+  'app/group/group.local.factory.js'
 ];
 
-var TEMPLATES_SRC = [];
+var TEMPLATES_SRC = [
+  'app/group/group.view.html'
+];
 
 var CSS_APP = [
   'css/main.css'
@@ -43,7 +49,8 @@ var JS_LIB = [
   'bower_components/jquery/dist/jquery.min.js',
   'bower_components/bootstrap/dist/js/bootstrap.min.js',
   'bower_components/angular/angular.js',
-  'bower_components/momentjs/moment.js'
+  'bower_components/momentjs/moment.js',
+  'bower_components/angular-ui-router/release/angular-ui-router.js'
 ];
 
 

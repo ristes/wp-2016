@@ -1,0 +1,27 @@
+<div class="panel panel-primary">
+  <div class="panel-heading">
+    <h4>Add or update {{vm.title}}</h4>
+  </div>
+  <form ng-submit="vm.save()">
+    <div class="panel-body">
+
+      <div class="form-group">
+        <label>Name</label>
+        <input class="form-control" type="text"
+               ng-model="vm.entity.name">
+      </div>
+    </div>
+    <div class="panel-footer text-right">
+      <button class="btn btn-default" type="reset"
+              ng-click="vm.clear()">
+        <i class="fa fa-fw fa-refresh"></i>
+        Clear
+      </button>
+      <button class="btn btn-primary" type="submit">
+        <i class="fa fa-fw fa-save"></i>
+        Save
+      </button>
+    </div>
+
+  </form>
+</div>
