@@ -28,8 +28,8 @@
       var entityForSave, invalidMessage;
       var deferred = $q.defer();
 
-      $timeout(function () {
-        if (groupEntity.id === undefined) {
+      if (groupEntity.id === undefined) {
+        $timeout(function () {
           entityForSave = angular.copy(groupEntity);
           invalidMessage = validateGroup(entityForSave);
           if (invalidMessage === null) {
@@ -43,14 +43,13 @@
               message: invalidMessage
             });
           }
-
-        } else {
-          updateFn(groupEntity);
-        }
-
-      }, 100);
+        }, 100);
+        return deferred.promise;
+      } else {
+        return updateFn(groupEntity);
+      }
       $log.debug('in save fn');
-      return deferred.promise;
+
     }
 
     function validateGroup(entity) {
@@ -64,45 +63,65 @@
     }
 
     function updateFn(groupEntity) {
+      var deferred = $q.defer();
       if (groupEntity.id === undefined) {
-        saveFn(groupEntity);
+        return saveFn(groupEntity);
       } else {
-        var savedEntity = getByIdFn(groupEntity.id);
-        angular.extend(savedEntity, groupEntity);
-        $log.debug("merged entity", savedEntity);
-        $log.debug('updating', savedEntity);
+        $timeout(function () {
+          getByIdFn(groupEntity.id)
+            .then(function (savedEntity) {
+              angular.extend(savedEntity, groupEntity);
+              $log.debug("merged entity", savedEntity);
+              $log.debug('updating', savedEntity);
+              deferred.resolve(savedEntity);
+            });
+
+        }, 100);
+        return deferred.promise;
       }
 
     }
 
     function getByIdFn(groupId) {
       var index;
+      var deferred = $q.defer();
 
-      $log.debug('get by id: ', groupId);
-      index = findIndexById(groupId);
-      if (index === -1) {
-        return null;
-      } else {
-        return groupsList[index];
-      }
 
-      // angular.forEach(groupsList, function(item) {
-      //   result= item;
-      // });
-      // return result;
+      $timeout(function () {
+        $log.debug('get by id: ', groupId);
+        index = findIndexById(groupId);
+        if (index === -1) {
+          deferred.resolve(null);
+        } else {
+          deferred.resolve(groupsList[index]);
+        }
+      }, 100);
+      return deferred.promise;
+
     }
 
     function getAllFn() {
-      $log.debug('getAll');
-      return angular.copy(groupsList);
+
+      var deferred = $q.defer();
+      $timeout(function () {
+        $log.debug('getAll');
+        deferred.resolve(angular.copy(groupsList));
+      }, 100);
+      return deferred.promise;
     }
 
     function removeFn(groupEntity) {
-      var index = findIndexById(groupEntity.id);
-      if (index !== -1) {
-        groupsList.splice(index, 1);
-      }
-      $log.debug('remove', groupEntity);
+      var deferred = $q.defer();
+      $timeout(function () {
+        var index = findIndexById(groupEntity.id);
+        if (index !== -1) {
+          groupsList.splice(index, 1);
+        }
+        $log.debug('remove', groupEntity);
+        deferred.resolve();
+      }, 100);
+      return deferred.promise;
+
     }
 
     function findIndexById(groupId) {

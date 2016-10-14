@@ -18,12 +18,12 @@
                    title="Choose group size">
           <ui-select-match
             placeholder="Select group size...">
-            <span>{{$item}}</span>
+            <span>{{$select.selected}}</span>
           </ui-select-match>
           <ui-select-choices
-            repeat="item in (vm.availableSizes | filter:$select.search ) track by item.value"
+            repeat="item in (vm.availableSizes | filter:$select.search )"
             position="auto">
-            {{item.value}}
+            {{item}}
           </ui-select-choices>
         </ui-select>
       </div>
@@ -55,10 +55,12 @@
     <table ng-show="vm.entities.length>0" class="table table-bordered table-striped">
       <tr>
         <th>Group Name</th>
+        <th>Group Size</th>
         <th>Actions</th>
       </tr>
       <tr ng-repeat="e in vm.entities">
         <td>{{e.name}}</td>
+        <td>{{e.groupSize}}</td>
         <td>
           <button class="btn btn-xs btn-default"
                   ng-click="vm.edit(e)">

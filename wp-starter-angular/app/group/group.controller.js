@@ -16,16 +16,17 @@
     vm.edit = edit;
     vm.remove = remove;
     vm.entity = {};
-    vm.entities = GroupService.getAll();
+    vm.entities = [];
     vm.saveOkMsg = null;
     vm.saveErrMsg = null;
-    vm.availableSizes = [
-      {
-        value: 20
-      }, {
-        value: 40
-      }
-    ];
+    vm.availableSizes = [20, 40];
+    loadGroups();
+
+    function loadGroups() {
+      GroupService.getAll().then(function (data) {
+        vm.entities = data;
+      });
+    }
 
     function save() {
       vm.saveOkMsg = null;
@@ -34,8 +35,9 @@
       var promise = GroupService.save(vm.entity);
       promise.then(successCallback, errorCallback);
       function successCallback(data) {
-        vm.entities = GroupService.getAll();
+        loadGroups();
         vm.saveOkMsg = "Group with id " + data.id + " is saved";
+        clear();
       }
 
       function errorCallback(data) {
@@ -53,7 +55,11 @@
     }
 
     function remove(entity) {
-      GroupService.remove(entity);
+      GroupService
+        .remove(entity)
+        .then(function () {
+          loadGroups();
+        });
     }
   }
 
