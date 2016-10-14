@@ -2,22 +2,47 @@
   <div class="panel-heading">
     <h4>Add or update {{vm.title}}</h4>
   </div>
-  <form ng-submit="vm.save()">
+  <form ng-submit="vm.save()" name="form">
     <div class="panel-body">
 
       <div class="form-group">
         <label>Name</label>
-        <input class="form-control" type="text"
+        <input class="form-control"
+               type="text"
+               ng-required="true"
                ng-model="vm.entity.name">
+      </div>
+      <div class="form-group">
+        <label>Size</label>
+        <ui-select ng-model="vm.entity.groupSize"
+                   title="Choose group size">
+          <ui-select-match
+            placeholder="Select group size...">
+            <span>{{$item}}</span>
+          </ui-select-match>
+          <ui-select-choices
+            repeat="item in (vm.availableSizes | filter:$select.search ) track by item.value"
+            position="auto">
+            {{item.value}}
+          </ui-select-choices>
+        </ui-select>
       </div>
     </div>
     <div class="panel-footer text-right">
+      <div class="panel panel-danger text-center text-danger" ng-show="vm.saveErrMsg">
+        {{vm.saveErrMsg}}
+      </div>
+      <div class="panel panel-success text-center text-success" ng-show="vm.saveOkMsg">
+        {{vm.saveOkMsg}}
+      </div>
       <button class="btn btn-default" type="reset"
               ng-click="vm.clear()">
         <i class="fa fa-fw fa-refresh"></i>
         Clear
       </button>
-      <button class="btn btn-primary" type="submit">
+      <button class="btn btn-primary"
+              type="submit"
+              ng-disabled="form.$invalid">
         <i class="fa fa-fw fa-save"></i>
         Save
       </button>
@@ -25,3 +50,31 @@
 
   </form>
 </div>
+<div class="row">
+  <div class="col-md-12">
+    <table ng-show="vm.entities.length>0" class="table table-bordered table-striped">
+      <tr>
+        <th>Group Name</th>
+        <th>Actions</th>
+      </tr>
+      <tr ng-repeat="e in vm.entities">
+        <td>{{e.name}}</td>
+        <td>
+          <button class="btn btn-xs btn-default"
+                  ng-click="vm.edit(e)">
+            Edit
+          </button>
+          <button class="btn btn-xs btn-danger"
+                  ng-click="vm.remove(e)">
+            Remove
+          </button>
+        </td>
+      </tr>
+    </table>
+
+    <div class="panel panel-warning text-warning" ng-hide="vm.entities.length>0">
+      There are no groups!
+    </div>
+  </div>
+</div>
+

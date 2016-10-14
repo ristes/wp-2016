@@ -3,7 +3,8 @@
 
   angular
     .module('wp-angular-starter', [
-      'ui.router'
+      'ui.router',
+      'ui.select'
     ]);
 
 })(angular);

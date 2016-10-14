@@ -15,7 +15,8 @@
     "angular-ui-router": "~0.2.15",
     "angular-resource": "~1.4.1",
     "angular-translate": "~2.11.0",
-    "ngstorage": "^0.3.10"
+    "ngstorage": "^0.3.10",
+    "angular-ui-select": "^0.18.0"
   },
   "resolutions": {
     "angular": "1.5.8",

@@ -23,11 +23,13 @@ var JS_APP = [
   'app/c1/second.controller.js',
   'app/group/group.state.js',
   'app/group/group.controller.js',
-  'app/group/group.local.factory.js'
+  'app/group/group.local.factory.js',
+  'app/default-page/**.js'
 ];
 
 var TEMPLATES_SRC = [
-  'app/group/group.view.html'
+  'app/group/group.view.html',
+  'app/default-page/**.html'
 ];
 
 var CSS_APP = [
@@ -42,7 +44,8 @@ var FONTS_LIB = [
 
 var CSS_LIB = [
   'bower_components/bootstrap/dist/css/bootstrap.css',
-  'bower_components/components-font-awesome/css/font-awesome.min.css'];
+  'bower_components/components-font-awesome/css/font-awesome.min.css',
+  'bower_components/angular-ui-select/dist/select.css'];
 
 
 var JS_LIB = [
@@ -50,7 +53,8 @@ var JS_LIB = [
   'bower_components/bootstrap/dist/js/bootstrap.min.js',
   'bower_components/angular/angular.js',
   'bower_components/momentjs/moment.js',
-  'bower_components/angular-ui-router/release/angular-ui-router.js'
+  'bower_components/angular-ui-router/release/angular-ui-router.js',
+  'bower_components/angular-ui-select/dist/select.js'
 ];
 
 
