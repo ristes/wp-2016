@@ -24,7 +24,9 @@ var JS_APP = [
   'app/group/group.state.js',
   'app/group/group.controller.js',
   'app/group/group.local.factory.js',
-  'app/default-page/**.js'
+  'app/default-page/**.js',
+  'app/directives/showcase-directive/showcase-directive.directive.js',
+  'app/directives/wp-combo/wp-combo.directive.js'
 ];
 
 var TEMPLATES_SRC = [

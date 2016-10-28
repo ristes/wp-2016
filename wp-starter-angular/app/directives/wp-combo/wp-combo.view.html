@@ -1,0 +1,20 @@
+<div class="form-group">
+
+  <label>{{vm.wpLabel}}</label>
+
+  <ui-select ng-model="vm.wpModel"
+             title="{{vm.placeholder}}">
+    <!-- Definition of the selected item display -->
+    <ui-select-match placeholder="{{vm.placeholder}}">
+      <div ng-transclude="selected">
+        {{$select.selected}}
+      </div>
+    </ui-select-match>
+    <!-- Definition of the dropdown item display -->
+    <ui-select-choices repeat="item in (vm.wpData | filter:$select.search )">
+      <div ng-transclude="item">
+        {{item}}
+      </div>
+    </ui-select-choices>
+  </ui-select>
+</div>

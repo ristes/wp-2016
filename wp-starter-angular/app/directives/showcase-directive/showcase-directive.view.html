@@ -1,0 +1,53 @@
+<table class="table table-striped table-bordered">
+  <tr>
+    <th ng-transclude="trName">
+      Attribute name
+    </th>
+    <th ng-transclude="trValue">
+      Value
+    </th>
+  </tr>
+  <tr>
+    <td>
+      stringConstant
+    </td>
+    <td>
+      {{vm.stringConstant}}
+    </td>
+  </tr>
+  <tr>
+    <td>
+      one way binding
+    </td>
+    <td>
+      <input
+        ng-model="vm.oneWayBindingVariable">
+
+    </td>
+  </tr>
+  <tr>
+    <td>
+      two way binding
+    </td>
+    <td>
+      <input
+        ng-model="vm.twoWayBindingVariable">
+
+    </td>
+  </tr>
+  <tr>
+    <td>
+      function binding
+    </td>
+    <td>
+      <button class="btn btn-primary btn-xs"
+              ng-click="vm.functionBinding()">
+        Invoke external function
+      </button>
+      <button class="btn btn-danger btn-xs"
+              ng-click="vm.invokeFunctionFromObject()">
+        Invoke external function as object
+      </button>
+    </td>
+  </tr>
+</table>

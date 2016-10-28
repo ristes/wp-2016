@@ -1,23 +1,96 @@
+<h1>First showcase page</h1>
+<hr/>
+<div class="alert alert-info">
+  This page contains elements for showcasing:
+  <ul>
+    <li>Scope binding and invoking functions</li>
+    <li>showcase-directive</li>
+    <li>wp-combo</li>
+  </ul>
+</div>
 <div class="row top-buffer"
      ng-init="to='Riste'">
-  <div class="col-sm-4 col-sm-offset-1">
-    <input class="form-control"
-           type="text"
-           ng-model="to"/>
-  </div>
-  <div class="col-sm-4" ng-click="helloDivClicked()">
-    Hello {{to}}!
-  </div>
-  <div class="col-sm-2">
-    <button class="btn btn-primary btn-xs"
-            ng-click="vm.clearTo()">
-      <i class="fa fa-fw fa-refresh"></i>
-    </button>
+  <div class="panel panel-info">
+    <div class="panel panel-heading">
+      <h4>This panel contains different binding examples
+      </h4>
+    </div>
+    <div class="panel-body">
+      <div class="col-sm-4 col-sm-offset-1">
+        <label>Input bind to the variable <b>to</b> from the <i>$scope</i></label>
+        <input class="form-control"
+               type="text"
+               ng-model="to"/>
+      </div>
+      <div class="col-sm-4 clickable" ng-click="helloDivClicked()">
+        Hello {{to}}!
+        <div class="text-muted">This element is clcickable and the results are visible in the console.</div>
+      </div>
+      <div class="col-sm-2">
+        <button class="btn btn-primary btn-xs"
+                ng-click="vm.clearTo()">
+          <i class="fa fa-fw fa-refresh"></i>
+          Clear the <b>$scope.to</b> variable
+        </button>
+      </div>
+
+      <div class="col-sm-12" ng-click="vm.helloDivClicked()">
+        <div class="text-muted">This element is clcickable and the results are visible in the console.</div>
+        <hr/>
+        <div><b>$scope.name: </b>{{name}}</div>
+
+        <div><b>$scope.vm: </b> {{ vm }}
+        </div>
+      </div>
+    </div>
   </div>
 
-  <div class="col-sm-12" ng-click="vm.helloDivClicked()">
-    <hr/>
-    {{name}} ||| {{ vm }}
+</div>
+<div class="row">
+  <div class="panel panel-info">
+    <div class="panel panel-heading">
+      <h4>This panel contains the
+        <b>showcase-directive</b>
+      </h4>
+    </div>
+    <div class="panel-body">
+      <showcase-directive string-constant="text"
+                          one-way-binding-variable="to"
+                          two-way-binding-variable="name"
+                          function-binding="vm.helloDivClicked()"
+                          function-object-binding="vm.helloDivClicked">
+        <trname>
+          <h1 class="text-danger">{{vm.name}}</h1>
+        </trname>
+        <trval>
+          <h1 class="text-success">{{to}}</h1>
+        </trval>
+      </showcase-directive>
+
+    </div>
   </div>
 
+
+</div>
+
+<div class="row">
+  <div class="panel panel-info">
+    <div class="panel panel-heading">
+      <h4>This panel contains the usage of the unfinished
+        <b>wp-combo</b> directive
+      </h4>
+    </div>
+    <div class="panel-body">
+      <wp-combo wp-label="Example"
+                wp-model="vm.entity.property"
+                wp-data="[{id:5, name:'Riste'}, {id:6, name:'Petko'}]">
+
+        <selected>{{$select.selected.name}}</selected>
+
+        <item>[{{item.id}}] {{item.name}}</item>
+      </wp-combo>
+
+
+    </div>
+  </div>
 </div>
