@@ -417,7 +417,7 @@
                 <configuration>
                     <server>tomcat-development-server</server>
                     <port>8080</port>
-                    <path>/servlet-showcase</path>
+                    <path>/</path>
                     <uriEncoding>UTF-8</uriEncoding>
                     <systemProperties>
                         <JAVA_OPTS>-Xms1024m -Xmx2048m -XX:+DisableExplicitGC
