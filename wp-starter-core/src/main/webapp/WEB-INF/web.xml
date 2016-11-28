@@ -6,34 +6,81 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
          id="WebApp_ID" version="2.5">
 
     <display-name>Spring MVC Starter</display-name>
+
+    <filter>
+        <filter-name>MyFilter</filter-name>
+        <filter-class>mk.ukim.finki.wp.web.MyFilter</filter-class>
+    </filter>
+
+    <filter-mapping>
+        <filter-name>MyFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+    <listener>
+        <listener-class>mk.ukim.finki.wp.web.InitCacheListener</listener-class>
+    </listener>
     <description>Starter Application for basic Spring MVC</description>
 
-    <context-param>
-        <param-name>contextConfigLocation</param-name>
-        <param-value>classpath:spring/business-config.xml</param-value>
-    </context-param>
+
+    <servlet>
+        <servlet-name>my-servlet</servlet-name>
+        <servlet-class>mk.ukim.finki.wp.web.MyServlet</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>redirect-servlet</servlet-name>
+        <servlet-class>mk.ukim.finki.wp.web.RedirectingServlet</servlet-class>
+    </servlet>
+
+
+    <servlet>
+        <servlet-name>dispatching-servlet</servlet-name>
+        <servlet-class>mk.ukim.finki.wp.web.DispatchingServlet</servlet-class>
+    </servlet>
+
+
+
+    <servlet-mapping>
+        <servlet-name>my-servlet</servlet-name>
+        <url-pattern>/my-servlet</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>dispatching-servlet</servlet-name>
+        <url-pattern>/dispatching-servlet</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>redirect-servlet</servlet-name>
+        <url-pattern>/redirect-servlet</url-pattern>
+    </servlet-mapping>
+
+    <!--<context-param>-->
+    <!--<param-name>contextConfigLocation</param-name>-->
+    <!--<param-value>classpath:spring/business-config.xml</param-value>-->
+    <!--</context-param>-->
 
     <!-- - Location of the XML file that defines the root application context.
         - Applied by ContextLoaderListener. -->
-    <listener>
-        <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
-    </listener>
+    <!--<listener>-->
+    <!--<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>-->
+    <!--</listener>-->
 
 
     <!-- - Servlet that dispatches request to registered handlers (Controller
         implementations). -->
-    <servlet>
-        <servlet-name>dispatcherServlet</servlet-name>
-        <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
-        <init-param>
-            <param-name>contextConfigLocation</param-name>
-            <param-value>classpath:spring/mvc-core-config.xml</param-value>
-        </init-param>
-        <load-on-startup>1</load-on-startup>
-    </servlet>
+    <!--<servlet>-->
+    <!--<servlet-name>dispatcherServlet</servlet-name>-->
+    <!--<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>-->
+    <!--<init-param>-->
+    <!--<param-name>contextConfigLocation</param-name>-->
+    <!--<param-value>classpath:spring/mvc-core-config.xml</param-value>-->
+    <!--</init-param>-->
+    <!--<load-on-startup>1</load-on-startup>-->
+    <!--</servlet>-->
 
-    <servlet-mapping>
-        <servlet-name>dispatcherServlet</servlet-name>
-        <url-pattern>/</url-pattern>
-    </servlet-mapping>
+    <!--<servlet-mapping>-->
+    <!--<servlet-name>dispatcherServlet</servlet-name>-->
+    <!--<url-pattern>/</url-pattern>-->
+    <!--</servlet-mapping>-->
 </web-app>
