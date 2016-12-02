@@ -10,4 +10,38 @@
         http://www.springframework.org/schema/beans/spring-beans.xsd
         http://www.springframework.org/schema/context
         http://www.springframework.org/schema/context/spring-context.xsd">
+
+
+    <import resource="mvc-view-config.xml" />
+
+    <mvc:annotation-driven/>
+
+    <mvc:resources mapping="/static/**" location="/static/" />
+
+    <context:component-scan base-package="mk.ukim.finki.wp.web" />
+
+
+    <!-- - Message source for this context, loaded from localized "messages_xx"
+        files. - Files are stored inside src/main/resources -->
+    <bean id="messageSource"
+          class="org.springframework.context.support.ResourceBundleMessageSource"
+          p:basename="messages/messages" />
+
+    <!-- - This bean resolves specific workTypes of exceptions to corresponding
+        logical - view names for error views. -->
+    <bean
+            class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
+        <!-- view name resolved using bean of type InternalResourceViewResolver
+            (declared in mvc-view-config.xml) -->
+        <property name="defaultErrorView" value="exception" />
+        <!-- results into 'WEB-INF/jsp/exception.jsp' -->
+        <property name="warnLogCategory" value="warn" />
+        <!-- needed otherwise exceptions won't be logged anywhere -->
+    </bean>
+
+
+    <bean id="multipartResolver"
+          class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+    </bean>
+
 </beans>

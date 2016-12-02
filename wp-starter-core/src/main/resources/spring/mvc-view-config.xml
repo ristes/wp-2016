@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- - DispatcherServlet application context for PetClinic's web tier. -->
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+         http://www.springframework.org/schema/beans/spring-beans.xsd">
+    <!-- - The ContentNegotiatingViewResolver delegates to the InternalResourceViewResolver
+        and BeanNameViewResolver, - and uses the requested media type (determined
+        by the path extension) to pick a matching view. - When the media type is
+        'text/html', it will delegate to the InternalResourceViewResolver's JstlView,
+        - otherwise to the BeanNameViewResolver. -->
+
+    <bean class="org.springframework.web.servlet.view.ContentNegotiatingViewResolver">
+
+        <property name="viewResolvers">
+            <list>
+                <!-- Default viewClass: JSTL view (JSP with html output) -->
+                <bean
+                        class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+                    <!-- Example: a logical view name of 'vets' is mapped to '/WEB-INF/jsp/vets.jsp' -->
+                    <property name="prefix" value="/WEB-INF/jsp/"/>
+                    <property name="suffix" value=".jsp"/>
+                </bean>
+
+                <!-- Used here for 'xml' and 'atom' views -->
+                <bean class="org.springframework.web.servlet.view.BeanNameViewResolver"/>
+            </list>
+        </property>
+    </bean>
+
+</beans>
