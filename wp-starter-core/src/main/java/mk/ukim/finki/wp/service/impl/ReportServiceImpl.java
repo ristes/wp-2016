@@ -36,7 +36,7 @@ public class ReportServiceImpl implements ReportService, BeanNameAware, Applicat
 
   @PostConstruct
   public void init() {
-    generateReport();
+    logger.debug("@PostConstruct method invoked");
   }
 
   @PreDestroy
@@ -81,12 +81,12 @@ public class ReportServiceImpl implements ReportService, BeanNameAware, Applicat
 
   public Object postProcessBeforeInitialization(Object o, String s) throws BeansException {
     logger.debug("postProcessBeforeInitialization({},{})", o, s);
-    return null;
+    return o;
   }
 
   public Object postProcessAfterInitialization(Object o, String s) throws BeansException {
     logger.debug("postProcessAfterInitialization({},{})", o, s);
-    return null;
+    return o;
   }
 
   public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
