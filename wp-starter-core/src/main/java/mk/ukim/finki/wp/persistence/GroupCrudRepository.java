@@ -10,4 +10,14 @@ import java.util.List;
 public interface GroupCrudRepository {
 
   List<Group> findAll();
+
+  Group findById(Long id);
+
+  Group insert(Group group);
+
+  void update(Group group);
+
+  void deleteById(Long id);
+
+  List<Group> findByCourseName(String name);
 }

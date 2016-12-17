@@ -16,7 +16,7 @@ public class Group extends BaseEntity {
     public static String NAME = "name";
     public static String GROUP_SIZE = "groupSize";
     public static String COURSE = "course";
-
+    public static String PROFESSORS = "professor";
   }
 
   @NotNull
@@ -25,11 +25,14 @@ public class Group extends BaseEntity {
   @Min(value = 0)
   public Integer groupSize;
 
-  // generates foreign key; if absent, exception will be thrown
+  // generates foreign key; if absent, exception will be thrown; FetchType.EAGER is default
   @ManyToOne(fetch = FetchType.EAGER)
   // sets the column name to the default value; optional annotation
   @JoinColumn(name = "course_id")
   public Course course;
+
+  @ManyToOne
+  public Professor professor;
 
   @Override
   public String toString() {

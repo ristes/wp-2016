@@ -1,13 +1,11 @@
 import mk.ukim.finki.wp.model.Group;
 import mk.ukim.finki.wp.persistence.GroupCrudRepository;
-import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import javax.persistence.PersistenceContext;
 import java.util.List;
 
 /**

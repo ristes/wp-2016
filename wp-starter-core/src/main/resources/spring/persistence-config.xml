@@ -55,4 +55,6 @@
 
 
     <context:component-scan base-package="mk.ukim.finki.wp.persistence"/>
+
+    <tx:annotation-driven/>
 </beans>

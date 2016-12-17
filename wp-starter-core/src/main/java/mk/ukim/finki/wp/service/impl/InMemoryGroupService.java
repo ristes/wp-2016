@@ -2,9 +2,11 @@ package mk.ukim.finki.wp.service.impl;
 
 import mk.ukim.finki.wp.exceptions.UnexistingUpdateException;
 import mk.ukim.finki.wp.model.Group;
+import mk.ukim.finki.wp.persistence.GroupCrudRepository;
 import mk.ukim.finki.wp.service.GroupService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
@@ -17,24 +19,23 @@ public class InMemoryGroupService implements GroupService {
 
   static final Logger logger = LoggerFactory.getLogger(GroupService.class);
 
+  GroupCrudRepository repository;
 
-  private Map<Long, Group> idToGroup = new HashMap<Long, Group>();
-
-  private long idSequence = 1;
+  @Autowired
+  public InMemoryGroupService(GroupCrudRepository repository) {
+    this.repository = repository;
+  }
 
   public Group insert(Group group) {
     logger.debug("insert {}", group);
-
-    group.id = idSequence;
-    idToGroup.put(idSequence, group);
-    idSequence++;
-    return null;
+    return repository.insert(group);
   }
 
   public void update(Long id, Group group) {
     logger.debug("update for id[{}]: {}", id, group);
-    if (idToGroup.containsKey(id)) {
-      idToGroup.put(id, group);
+    Group old = repository.findById(id);
+    if (old != null) {
+      repository.update(group);
     } else {
       throw new UnexistingUpdateException();
     }
@@ -42,18 +43,19 @@ public class InMemoryGroupService implements GroupService {
 
   public List<Group> findAll() {
     logger.debug("find All");
-    return new ArrayList<Group>(idToGroup.values());
+    return repository.findAll();
   }
 
   public Group findById(Long id) {
     logger.debug("find by id: {}", id);
-    return idToGroup.get(id);
+    return repository.findById(id);
   }
 
   public void deleteById(Long id) {
     logger.debug("delete by id: {}", id);
-    if(idToGroup.containsKey(id)) {
-      idToGroup.remove(id);
+    Group group = repository.findById(id);
+    if (group != null) {
+      repository.deleteById(id);
     } else {
       throw new UnexistingUpdateException();
     }

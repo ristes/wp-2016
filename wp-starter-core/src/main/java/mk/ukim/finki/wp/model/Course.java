@@ -17,7 +17,8 @@ public class Course extends BaseEntity {
 
   public String name;
 
-  @OneToMany(mappedBy = "course",fetch = FetchType.LAZY)
+  // mappedBy references to the field 'course' in the entity 'Group'
+  @OneToMany(mappedBy = "course", fetch = FetchType.LAZY)
   @JsonIgnore
   public List<Group> groups;
 
